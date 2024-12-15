@@ -64,19 +64,19 @@
 
         default_layer {
             bindings = <
-//    ┌─────────────┬───────┬────────────┬────────────┬────────────┬─────┬───────────┬─────────────┬────────────┬────────────┬────┬─────────────┐
-//    │    gresc    │   Q   │     W      │     E      │     R      │  T  │     Y     │      U      │     I      │     O      │ P  │    bspc     │
-//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ mt lctl tab │   A   │ &hm lgui S │ &hm lalt D │ &hm rsft F │  G  │     H     │ &hm rsft J  │ &hm lalt K │ &hm rgui L │ '  │ mt lctl ent │
-//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼────┼─────────────┤
-//    │  &sk lsft   │   Z   │     X      │     C      │     V      │  B  │     N     │      M      │     ,      │     .      │ /  │      ;      │
-//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ lgui(bspc)  │ capsw │    ralt    │    sl 3    │    sl 1    │     │ slt 2 spc │ mt lgui ent │ slt 1 left │    down    │ up │    rght     │
-//    └─────────────┴───────┴────────────┴────────────┴────────────┴─────┴───────────┴─────────────┴────────────┴────────────┴────┴─────────────┘
-  &gresc          &kp Q        &kp W        &kp E        &kp R         &kp T    &kp Y          &kp U            &kp I         &kp O        &kp P       &kp BSPC
-  &mt LCTRL TAB   &kp A        &hm LGUI S   &hm LALT D   &hm RSHFT F   &kp G    &kp H          &hm RSHFT J      &hm LALT K    &hm RGUI L   &kp SQT     &mt LCTRL ENTER
-  &sk LSHFT       &kp Z        &kp X        &kp C        &kp V         &kp B    &kp N          &kp M            &kp COMMA     &kp DOT      &kp SLASH   &kp SEMI
-  &kp LG(BSPC)    &caps_word   &kp RALT     &sl 3        &sl 1         &trans   &slt 2 SPACE   &mt LGUI ENTER   &slt 1 LEFT   &kp DOWN     &kp UP      &kp RIGHT
+//    ┌─────────────┬─────────┬────────────┬────────────┬────────────┬─────┬───────────┬─────────────┬────────────┬────────────┬─────────┬───────────┐
+//    │    gresc    │ slt 1 Q │     W      │     E      │     R      │  T  │     Y     │      U      │     I      │     O      │ slt 1 P │   bspc    │
+//    ├─────────────┼─────────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼─────────┼───────────┤
+//    │ mt lctl tab │    A    │ &hm lgui S │ &hm lalt D │ &hm rsft F │  G  │     H     │ &hm rsft J  │ &hm lalt K │ &hm rgui L │    '    │ mt lctl - │
+//    ├─────────────┼─────────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼─────────┼───────────┤
+//    │  &sk lsft   │    Z    │     X      │     C      │     V      │  B  │     N     │      M      │     ,      │     .      │    /    │     ;     │
+//    ├─────────────┼─────────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼─────────┼───────────┤
+//    │ lgui(bspc)  │  capsw  │    ralt    │    sl 3    │    sl 2    │     │ slt 1 spc │ mt lgui ent │ slt 2 left │ slt 3 down │   up    │   rght    │
+//    └─────────────┴─────────┴────────────┴────────────┴────────────┴─────┴───────────┴─────────────┴────────────┴────────────┴─────────┴───────────┘
+  &gresc          &slt 1 Q     &kp W        &kp E        &kp R         &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &kp BSPC
+  &mt LCTRL TAB   &kp A        &hm LGUI S   &hm LALT D   &hm RSHFT F   &kp G    &kp H          &hm RSHFT J      &hm LALT K    &hm RGUI L    &kp SQT     &mt LCTRL MINUS
+  &sk LSHFT       &kp Z        &kp X        &kp C        &kp V         &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &kp SEMI
+  &kp LG(BSPC)    &caps_word   &kp RALT     &sl 3        &sl 2         &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &kp RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -119,19 +119,19 @@
         };
         other {
             bindings = <
-//    ┌─────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────┐
-//    │     │ lgui(1) │ lgui(2) │ lgui(3) │ lgui(4) │ lgui(5) │ lgui(6) │ lgui(7) │ lgui(8) │ lgui(9) │ lgui(0) │     │
-//    ├─────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │         │         │         │         │         │         │  left   │  down   │   up    │  rght   │     │
-//    ├─────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │         │         │         │         │         │         │         │         │         │         │     │
-//    ├─────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │         │         │         │         │         │         │         │         │         │         │     │
-//    └─────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────┘
-  &trans   &kp LG(N1)   &kp LG(N2)   &kp LG(N3)   &kp LG(N4)   &kp LG(N5)   &kp LG(N6)   &kp LG(N7)   &kp LG(N8)   &kp LG(N9)   &kp LG(N0)   &trans
-  &trans   &trans       &trans       &trans       &trans       &trans       &trans       &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans
-  &trans   &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans
-  &trans   &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans
+//    ┌─────┬────────────┬────────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────┐
+//    │     │  lgui(1)   │  lgui(2)   │ lgui(3) │ lgui(4) │ lgui(5) │ lgui(6) │ lgui(7) │ lgui(8) │ lgui(9) │ lgui(0) │     │
+//    ├─────┼────────────┼────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
+//    │     │ lctl(left) │ lctl(rght) │         │         │         │         │  left   │  down   │   up    │  rght   │     │
+//    ├─────┼────────────┼────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
+//    │     │            │            │         │         │         │         │         │         │         │         │     │
+//    ├─────┼────────────┼────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
+//    │     │            │            │         │         │         │         │         │         │         │         │     │
+//    └─────┴────────────┴────────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────┘
+  &trans   &kp LG(N1)     &kp LG(N2)      &kp LG(N3)   &kp LG(N4)   &kp LG(N5)   &kp LG(N6)   &kp LG(N7)   &kp LG(N8)   &kp LG(N9)   &kp LG(N0)   &trans
+  &trans   &kp LC(LEFT)   &kp LC(RIGHT)   &trans       &trans       &trans       &trans       &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans
+  &trans   &trans         &trans          &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans
+  &trans   &trans         &trans          &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans       &trans
             >;
         };
 
