@@ -40,6 +40,16 @@
                 flavor = "balanced";
                 bindings = <&kp>, <&kp>;
         };
+        slt: spacebar_layer_tap { 
+                compatible = "zmk,behavior-hold-tap"; 
+                label = "SPACE_LAYER_TAP"; 
+                #binding-cells = <2>; 
+                flavor = "tap-preferred"; 
+                tapping-term-ms = <200>; 
+                quick-tap-ms = <125>; 
+                global-quick-tap; 
+                bindings = <&mo>, <&kp>; 
+        }; 
     };
     combos {
         compatible = "zmk,combos";
@@ -54,19 +64,19 @@
 
         default_layer {
             bindings = <
-//    ┌─────────────┬───────┬────────────┬────────────┬────────────┬─────┬─────┬────────────┬────────────┬────────────┬────┬─────────────┐
-//    │    gresc    │   Q   │     W      │     E      │     R      │  T  │  Y  │     U      │     I      │     O      │ P  │    bspc     │
-//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼─────┼────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ mt lctl tab │   A   │ &hm lgui S │ &hm lalt D │ &hm rsft F │  G  │  H  │ &hm rsft J │ &hm lalt K │ &hm rgui L │ ;  │ mt lctl ent │
-//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼─────┼────────────┼────────────┼────────────┼────┼─────────────┤
-//    │  &sk lsft   │   Z   │     X      │     C      │     V      │  B  │  N  │     M      │     ,      │     .      │ /  │      '      │
-//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼─────┼────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ lgui(bspc)  │ capsw │    lalt    │    mo 3    │    mo 1    │     │ spc │    mo 2    │    left    │    down    │ up │    rght     │
-//    └─────────────┴───────┴────────────┴────────────┴────────────┴─────┴─────┴────────────┴────────────┴────────────┴────┴─────────────┘
-  &gresc          &kp Q        &kp W        &kp E        &kp R         &kp T    &kp Y       &kp U         &kp I        &kp O        &kp P       &kp BSPC
-  &mt LCTRL TAB   &kp A        &hm LGUI S   &hm LALT D   &hm RSHFT F   &kp G    &kp H       &hm RSHFT J   &hm LALT K   &hm RGUI L   &kp SEMI    &mt LCTRL ENTER
-  &sk LSHFT       &kp Z        &kp X        &kp C        &kp V         &kp B    &kp N       &kp M         &kp COMMA    &kp DOT      &kp SLASH   &kp SQT
-  &kp LG(BSPC)    &caps_word   &kp LALT     &mo 3        &mo 1         &trans   &kp SPACE   &mo 2         &kp LEFT     &kp DOWN     &kp UP      &kp RIGHT
+//    ┌─────────────┬───────┬────────────┬────────────┬────────────┬─────┬───────────┬─────────────┬────────────┬────────────┬────┬─────────────┐
+//    │    gresc    │   Q   │     W      │     E      │     R      │  T  │     Y     │      U      │     I      │     O      │ P  │    bspc     │
+//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼────┼─────────────┤
+//    │ mt lctl tab │   A   │ &hm lgui S │ &hm lalt D │ &hm rsft F │  G  │     H     │ &hm rsft J  │ &hm lalt K │ &hm rgui L │ '  │ mt lctl ent │
+//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼────┼─────────────┤
+//    │  &sk lsft   │   Z   │     X      │     C      │     V      │  B  │     N     │      M      │     ,      │     .      │ /  │      ;      │
+//    ├─────────────┼───────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼────┼─────────────┤
+//    │ lgui(bspc)  │ capsw │    ralt    │    sl 3    │    sl 1    │     │ slt 2 spc │ mt lgui ent │ slt 1 left │    down    │ up │    rght     │
+//    └─────────────┴───────┴────────────┴────────────┴────────────┴─────┴───────────┴─────────────┴────────────┴────────────┴────┴─────────────┘
+  &gresc          &kp Q        &kp W        &kp E        &kp R         &kp T    &kp Y          &kp U            &kp I         &kp O        &kp P       &kp BSPC
+  &mt LCTRL TAB   &kp A        &hm LGUI S   &hm LALT D   &hm RSHFT F   &kp G    &kp H          &hm RSHFT J      &hm LALT K    &hm RGUI L   &kp SQT     &mt LCTRL ENTER
+  &sk LSHFT       &kp Z        &kp X        &kp C        &kp V         &kp B    &kp N          &kp M            &kp COMMA     &kp DOT      &kp SLASH   &kp SEMI
+  &kp LG(BSPC)    &caps_word   &kp RALT     &sl 3        &sl 1         &trans   &slt 2 SPACE   &mt LGUI ENTER   &slt 1 LEFT   &kp DOWN     &kp UP      &kp RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -74,37 +84,37 @@
 
         lower {
             bindings = <
-//    ┌─────────┬────────────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬─────────┬──────┐
-//    │ lsft(`) │    lsft(1)     │ lsft(2) │ lsft(3) │ lsft(4) │ lsft(5) │ lsft(6) │ lsft(7) │ lsft(8) │ lsft(9) │ lsft(0) │ del  │
-//    ├─────────┼────────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼──────┤
-//    │   del   │       f1       │   f2    │   f3    │   f4    │   f5    │   f6    │    _    │    +    │    {    │    }    │  |   │
-//    ├─────────┼────────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼──────┤
-//    │         │       f7       │   f8    │   f9    │   f10   │   f11   │   f12   │ lsft(#) │ lsft(\) │  home   │   end   │      │
-//    ├─────────┼────────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼──────┤
-//    │ bl_ on  │ &studio_unlock │         │         │         │         │         │         │  next   │  vold   │  volu   │ play │
-//    └─────────┴────────────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴──────┘
-  &kp LS(GRAVE)   &kp LS(N1)       &kp LS(N2)   &kp LS(N3)   &kp LS(N4)   &kp LS(N5)   &kp LS(N6)   &kp LS(N7)     &kp LS(N8)     &kp LS(N9)     &kp LS(N0)     &kp DEL
-  &kp DEL         &kp F1           &kp F2       &kp F3       &kp F4       &kp F5       &kp F6       &kp UNDER      &kp PLUS       &kp LBRC       &kp RBRC       &kp PIPE
-  &trans          &kp F7           &kp F8       &kp F9       &kp F10      &kp F11      &kp F12      &kp LS(HASH)   &kp LS(BSLH)   &kp HOME       &kp END        &trans
-  &bl BL_ON       &studio_unlock   &trans       &trans       &trans       &trans       &trans       &trans         &kp C_NEXT     &kp C_VOL_DN   &kp C_VOL_UP   &kp C_PP
+//    ┌─────────┬────────────────┬─────┬─────┬─────┬─────┬─────┬───┬───┬───┬───┬──────┐
+//    │ lsft(`) │       !        │  @  │  {  │  }  │  |  │  -  │ 7 │ 8 │ 9 │ * │ del  │
+//    ├─────────┼────────────────┼─────┼─────┼─────┼─────┼─────┼───┼───┼───┼───┼──────┤
+//    │   del   │       #        │  $  │  (  │  )  │  ;  │  _  │ 4 │ 5 │ 6 │ " │  -   │
+//    ├─────────┼────────────────┼─────┼─────┼─────┼─────┼─────┼───┼───┼───┼───┼──────┤
+//    │         │       %        │  ^  │  [  │  ]  │  +  │  &  │ 1 │ 2 │ 3 │ \ │  /   │
+//    ├─────────┼────────────────┼─────┼─────┼─────┼─────┼─────┼───┼───┼───┼───┼──────┤
+//    │ bl_ on  │ &studio_unlock │     │     │     │     │     │ . │ 0 │ , │ = │ play │
+//    └─────────┴────────────────┴─────┴─────┴─────┴─────┴─────┴───┴───┴───┴───┴──────┘
+  &kp LS(GRAVE)   &kp EXCL         &kp AT       &kp LBRC   &kp RBRC   &kp PIPE   &kp MINUS   &kp N7    &kp N8   &kp N9      &kp ASTRK   &kp DEL
+  &kp DEL         &kp HASH         &kp DOLLAR   &kp LPAR   &kp RPAR   &kp SEMI   &kp UNDER   &kp N4    &kp N5   &kp N6      &kp DQT     &kp MINUS
+  &trans          &kp PRCNT        &kp CARET    &kp LBKT   &kp RBKT   &kp PLUS   &kp AMPS    &kp N1    &kp N2   &kp N3      &kp BSLH    &kp SLASH
+  &bl BL_ON       &studio_unlock   &trans       &trans     &trans     &trans     &trans      &kp DOT   &kp N0   &kp COMMA   &kp EQUAL   &kp C_PP
             >;
         };
 
         raise {
             bindings = <
-//    ┌──────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬──────┬──────┬──────┬──────┐
-//    │  `   │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8   │  9   │  0   │ bspc │
-//    ├──────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┼──────┼──────┼──────┤
-//    │ del  │ f1  │ f2  │ f3  │ f4  │ f5  │ f6  │  -  │  =   │  [   │  ]   │  \   │
-//    ├──────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┼──────┼──────┼──────┤
-//    │      │ f7  │ f8  │ f9  │ f10 │ f11 │ f12 │  #  │  \   │ pgup │ pgdn │      │
-//    ├──────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┼──────┼──────┼──────┤
-//    │ boot │     │     │     │     │     │     │     │ next │ vold │ volu │ play │
-//    └──────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴──────┴──────┴──────┴──────┘
-  &kp GRAVE     &kp N1   &kp N2   &kp N3   &kp N4    &kp N5    &kp N6    &kp N7      &kp N8       &kp N9         &kp N0         &kp BSPC
-  &kp DEL       &kp F1   &kp F2   &kp F3   &kp F4    &kp F5    &kp F6    &kp MINUS   &kp EQUAL    &kp LBKT       &kp RBKT       &kp BSLH
-  &trans        &kp F7   &kp F8   &kp F9   &kp F10   &kp F11   &kp F12   &kp HASH    &kp BSLH     &kp PG_UP      &kp PG_DN      &trans
-  &bootloader   &trans   &trans   &trans   &trans    &trans    &trans    &trans      &kp C_NEXT   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_PP
+//    ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬──────┐
+//    │ lsft(`) │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │  0  │ bspc │
+//    ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┤
+//    │   del   │ f1  │ f2  │ f3  │ f4  │ f5  │ f6  │ f7  │ f8  │ f9  │ f10 │ f11  │
+//    ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┤
+//    │         │     │     │     │     │     │     │     │     │     │     │ f12  │
+//    ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┤
+//    │         │     │     │     │     │     │     │     │     │     │     │      │
+//    └─────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴──────┘
+  &kp LS(GRAVE)   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5   &kp N6   &kp N7   &kp N8   &kp N9   &kp N0    &kp BSPC
+  &kp DEL         &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &kp F6   &kp F7   &kp F8   &kp F9   &kp F10   &kp F11
+  &trans          &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans    &kp F12
+  &trans          &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans    &trans
             >;
         };
         other {
