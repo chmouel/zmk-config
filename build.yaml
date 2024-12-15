@@ -20,3 +20,4 @@
 ---
 include:
   - board: planck_rev6
+    snippet: studio-rpc-usb-uart
