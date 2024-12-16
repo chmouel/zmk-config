@@ -8,14 +8,6 @@
 #include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/keys.h>
 
-//    │  0              │  1        │  2         │  3         │  4         │  5  │  6  │  7         │  8         │  9         │ 10 │  11         │
-//    ├─────────────────┼───────────┼────────────┼────────────┼────────────┼─────┼─────┼────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ 12              │ 13        │ 14         │ 15         │ 16 (F)     │ 17  │ 18  │ 19 (J)     │ 20         │ 21         │ 22 │  23         │
-//    ├─────────────────┼───────────┼────────────┼────────────┼────────────┼─────┼─────┼────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ 24              │ 25        │ 26         │ 27         │ 28         │ 29  │ 30  │ 31         │ 32         │ 33         │ 34 │  35         │
-//    ├─────────────────┼───────────┼────────────┼────────────┼────────────┼─────┼─────┼────────────┼────────────┼────────────┼────┼─────────────┤
-//    │ 36              │ 37        │ 38         │ 39         │ 40         │     │ 41 SPC   │ 42         │ 43         │ 44         │ 45 │  46         │
-//    └─────────────────┴───────────┴────────────┴────────────┴────────────┴─────┴──────────┴────────────┴────────────┴────────────┴────┴─────────────┘
 /* Uncomment this block if using an encoder */
 //&encoder {
 //    status = "okay";
@@ -29,24 +21,43 @@
     layers = <0>; \
   };
 
+#include "includes/4x12.h"
+
+#define QUICK_TAP_MS 175
+#define IDLE_MS 150
+#define TAPPING_TERM_MS 280
+
 / {
     behaviors {
-        hm: homerow_mods {
+        hml: homerow_mods_left {
                 compatible = "zmk,behavior-hold-tap";
-                label = "HOMEROW_MODS";
-                #binding-cells = <2>;
-                tapping_term_ms = <200>;
-                require-prior-idle-ms = <125>;
+                label = "HOMEROW_MODS_LEFT";
                 flavor = "balanced";
+                tapping-term-ms = <TAPPING_TERM_MS>;
+                quick-tap-ms = <QUICK_TAP_MS>;
+                require-prior-idle-ms = <IDLE_MS>;
                 bindings = <&kp>, <&kp>;
+                #binding-cells = <2>; 
+                hold-trigger-key-positions = <KEYS_R THUMBS>;
+        };
+        hmr: homerow_mods_right {
+                compatible = "zmk,behavior-hold-tap";
+                label = "HOMEROW_MODS_RIGHT";
+                flavor = "balanced";
+                tapping-term-ms = <TAPPING_TERM_MS>;
+                quick-tap-ms = <QUICK_TAP_MS>;
+                require-prior-idle-ms = <IDLE_MS>;
+                bindings = <&kp>, <&kp>;
+                #binding-cells = <2>; 
+                hold-trigger-key-positions = <KEYS_L THUMBS>;
         };
         slt: spacebar_layer_tap { 
                 compatible = "zmk,behavior-hold-tap"; 
                 label = "SPACE_LAYER_TAP"; 
                 #binding-cells = <2>; 
                 flavor = "tap-preferred"; 
-                tapping-term-ms = <200>; 
-                quick-tap-ms = <125>; 
+                tapping-term-ms = <TAPPING_TERM_MS>; 
+                quick-tap-ms = <QUICK_TAP_MS>; 
                 global-quick-tap; 
                 bindings = <&mo>, <&kp>; 
         }; 
@@ -57,33 +68,40 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
             keep-mods = <(MOD_RSFT)>;
         };
+        colon_semi: invert_colon_semi {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COLON>, <&kp SEMI>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
     combos {
         compatible = "zmk,combos";
-              
-        COMBO(esckey, &kp ESC, 19 20)
-        COMBO(goback, &kp LG(BSPC), 18 20)
+
+        COMBO(esckey,      &kp ESC,         19 20)
+        COMBO(goback,      &kp LG(BSPC),    18 20)
         COMBO(ctrlshfttab, &kp LC(LS(TAB)), 13 14)
-        COMBO(ctrltab, &kp LC(TAB), 14 15)
+        COMBO(ctrltab,     &kp LC(TAB),     14 15)
+        COMBO(caps_word,   &caps_word,      27 28)
     };
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-//    ┌─────────────┬─────────┬────────────┬────────────┬────────────┬─────┬───────────┬─────────────┬────────────┬────────────┬─────────┬───────────┐
-//    │    gresc    │ slt 1 Q │     W      │     E      │     R      │  T  │     Y     │      U      │     I      │     O      │ slt 1 P │ &bspc_del │
-//    ├─────────────┼─────────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼─────────┼───────────┤
-//    │ mt lctl tab │    A    │ &hm lgui S │ &hm lalt D │ &hm lsft F │  G  │     H     │ &hm rsft J  │ &hm lalt K │ &hm rgui L │    '    │ mt lctl - │
-//    ├─────────────┼─────────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼─────────┼───────────┤
-//    │  &sk lsft   │    Z    │     X      │     C      │     V      │  B  │     N     │      M      │     ,      │     .      │    /    │     ;     │
-//    ├─────────────┼─────────┼────────────┼────────────┼────────────┼─────┼───────────┼─────────────┼────────────┼────────────┼─────────┼───────────┤
-//    │ lgui(bspc)  │  capsw  │    ralt    │    sl 2    │    sl 3    │     │ slt 1 spc │ mt lgui ent │ slt 2 left │ slt 3 down │   up    │   rght    │
-//    └─────────────┴─────────┴────────────┴────────────┴────────────┴─────┴───────────┴─────────────┴────────────┴────────────┴─────────┴───────────┘
-  &gresc          &slt 1 Q     &kp W        &kp E        &kp R         &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &bspc_del
-  &mt LCTRL TAB   &kp A        &hm LGUI S   &hm LALT D   &hm LSHFT F   &kp G    &kp H          &hm RSHFT J      &hm LALT K    &hm RGUI L    &kp SQT     &mt LCTRL MINUS
-  &sk LSHFT       &kp Z        &kp X        &kp C        &kp V         &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &kp SEMI
-  &kp LG(BSPC)    &caps_word   &kp RALT     &sl 2        &sl 3         &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &kp RIGHT
+//    ┌─────────────┬─────────┬─────────────┬─────────────┬─────────────┬─────┬───────────┬─────────────┬─────────────┬─────────────┬─────────┬─────────────┐
+//    │    gresc    │ slt 1 Q │      W      │      E      │      R      │  T  │     Y     │      U      │      I      │      O      │ slt 1 P │  &bspc_del  │
+//    ├─────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼─────────────┤
+//    │ mt lctl tab │    A    │ &hml lgui S │ &hml lalt D │ &hml lsft F │  G  │     H     │ &hmr rsft J │ &hmr lalt K │ &hmr rgui L │    '    │  mt lctl -  │
+//    ├─────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼─────────────┤
+//    │  &sk lsft   │    Z    │      X      │      C      │      V      │  B  │     N     │      M      │      ,      │      .      │    /    │ &colon_semi │
+//    ├─────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼─────────────┤
+//    │ lgui(bspc)  │  capsw  │    ralt     │    sl 2     │    sl 3     │     │ slt 1 spc │ mt lgui ent │ slt 2 left  │ slt 3 down  │   up    │    rght     │
+//    └─────────────┴─────────┴─────────────┴─────────────┴─────────────┴─────┴───────────┴─────────────┴─────────────┴─────────────┴─────────┴─────────────┘
+  &gresc          &slt 1 Q     &kp W         &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &bspc_del
+  &mt LCTRL TAB   &kp A        &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
+  &sk LSHFT       &kp Z        &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &colon_semi
+  &kp LG(BSPC)    &caps_word   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &kp RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
