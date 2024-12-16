@@ -92,18 +92,18 @@
         lower {
             bindings = <
 //    ┌─────────┬────────────────┬─────┬─────┬─────┬─────┬─────┬───┬───┬───┬───┬──────┐
-//    │ lsft(`) │       !        │  @  │  {  │  }  │  |  │  -  │ 7 │ 8 │ 9 │ * │ del  │
+//    │ lsft(`) │       !        │  @  │  {  │  }  │  |  │  =  │ 7 │ 8 │ 9 │ * │  :   │
 //    ├─────────┼────────────────┼─────┼─────┼─────┼─────┼─────┼───┼───┼───┼───┼──────┤
-//    │   del   │       #        │  $  │  (  │  )  │  ;  │  _  │ 4 │ 5 │ 6 │ " │  -   │
+//    │   del   │       #        │  $  │  (  │  )  │  +  │  _  │ 4 │ 5 │ 6 │ " │  ;   │
 //    ├─────────┼────────────────┼─────┼─────┼─────┼─────┼─────┼───┼───┼───┼───┼──────┤
-//    │         │       %        │  ^  │  [  │  ]  │  +  │  &  │ 1 │ 2 │ 3 │ \ │  /   │
+//    │         │       %        │  ^  │  [  │  ]  │  -  │  &  │ 1 │ 2 │ 3 │ \ │  /   │
 //    ├─────────┼────────────────┼─────┼─────┼─────┼─────┼─────┼───┼───┼───┼───┼──────┤
 //    │ bl_ on  │ &studio_unlock │     │     │     │     │     │ . │ 0 │ , │ = │ play │
 //    └─────────┴────────────────┴─────┴─────┴─────┴─────┴─────┴───┴───┴───┴───┴──────┘
-  &kp LS(GRAVE)   &kp EXCL         &kp AT       &kp LBRC   &kp RBRC   &kp PIPE   &kp MINUS   &kp N7    &kp N8   &kp N9      &kp ASTRK   &kp DEL
-  &kp DEL         &kp HASH         &kp DOLLAR   &kp LPAR   &kp RPAR   &kp SEMI   &kp UNDER   &kp N4    &kp N5   &kp N6      &kp DQT     &kp MINUS
-  &trans          &kp PRCNT        &kp CARET    &kp LBKT   &kp RBKT   &kp PLUS   &kp AMPS    &kp N1    &kp N2   &kp N3      &kp BSLH    &kp SLASH
-  &bl BL_ON       &studio_unlock   &trans       &trans     &trans     &trans     &trans      &kp DOT   &kp N0   &kp COMMA   &kp EQUAL   &kp C_PP
+  &kp LS(GRAVE)   &kp EXCL         &kp AT       &kp LBRC   &kp RBRC   &kp PIPE    &kp EQUAL   &kp N7    &kp N8   &kp N9      &kp ASTRK   &kp COLON
+  &kp DEL         &kp HASH         &kp DOLLAR   &kp LPAR   &kp RPAR   &kp PLUS    &kp UNDER   &kp N4    &kp N5   &kp N6      &kp DQT     &kp SEMI
+  &trans          &kp PRCNT        &kp CARET    &kp LBKT   &kp RBKT   &kp MINUS   &kp AMPS    &kp N1    &kp N2   &kp N3      &kp BSLH    &kp SLASH
+  &bl BL_ON       &studio_unlock   &trans       &trans     &trans     &trans      &trans      &kp DOT   &kp N0   &kp COMMA   &kp EQUAL   &kp C_PP
             >;
         };
 
