@@ -21,11 +21,13 @@
     layers = <0>; \
   };
 
+//#define HYPR LS(LC(LA(LGUI)))
+#include "includes/local.h"
 #include "includes/4x12.h"
 
 #define QUICK_TAP_MS 175
 #define IDLE_MS 150
-#define TAPPING_TERM_MS 280
+#define TAPPING_TERM_MS 230
 
 / {
     behaviors {
@@ -84,24 +86,54 @@
         COMBO(ctrltab,     &kp LC(TAB),     14 15)
         COMBO(caps_word,   &caps_word,      27 28)
     };
+    macros {
+        DEBUG_PASTE: DEBUG_PASTE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <MYDEBUG_PASTE_MACRO>;
+            label = "DEBUG_PASTE";
+        };
+ 
+        DEBUG_PASTE2: DEBUG_PASTE2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = 
+              MYDEBUG_PASTE_MACRO_2
+            label = "DEBUG_PASTE2";
+        };  
+
+        EMAIL: EMAIL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp C &kp H &kp M &kp O &kp U &kp E &kp L &kp AT &kp C &kp H &kp M &kp O &kp U &kp E &kp L &kp DOT &kp C &kp O &kp M>;
+            label = "EMAIL";
+        };
+
+        WORK_EMAIL: WORK_EMAIL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp C &kp B &kp O &kp U &kp D &kp J &kp N &kp A &kp AT &kp R &kp E &kp D &kp H &kp A &kp T &kp DOT &kp C &kp O &kp M>;
+            label = "WORK_EMAIL";
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-//    ┌─────────────┬─────────┬─────────────┬─────────────┬─────────────┬─────┬───────────┬─────────────┬─────────────┬─────────────┬─────────┬─────────────┐
-//    │    gresc    │ slt 1 Q │      W      │      E      │      R      │  T  │     Y     │      U      │      I      │      O      │ slt 1 P │  &bspc_del  │
-//    ├─────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼─────────────┤
-//    │ mt lctl tab │    A    │ &hml lgui S │ &hml lalt D │ &hml lsft F │  G  │     H     │ &hmr rsft J │ &hmr lalt K │ &hmr rgui L │    '    │  mt lctl -  │
-//    ├─────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼─────────────┤
-//    │  &sk lsft   │    Z    │      X      │      C      │      V      │  B  │     N     │      M      │      ,      │      .      │    /    │ &colon_semi │
-//    ├─────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼─────────────┤
-//    │ lgui(bspc)  │  capsw  │    ralt     │    sl 2     │    sl 3     │     │ slt 1 spc │ mt lgui ent │ slt 2 left  │ slt 3 down  │   up    │    rght     │
-//    └─────────────┴─────────┴─────────────┴─────────────┴─────────────┴─────┴───────────┴─────────────┴─────────────┴─────────────┴─────────┴─────────────┘
-  &gresc          &slt 1 Q     &kp W         &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &bspc_del
-  &mt LCTRL TAB   &kp A        &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
-  &sk LSHFT       &kp Z        &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &colon_semi
-  &kp LG(BSPC)    &caps_word   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &kp RIGHT
+//    ┌───────────────────┬─────────┬─────────────┬─────────────┬─────────────┬─────┬───────────┬─────────────┬─────────────┬─────────────┬─────────┬────────────────────┐
+//    │ mt lsft(lctl) tab │ slt 1 Q │      W      │      E      │      R      │  T  │     Y     │      U      │      I      │      O      │ slt 1 P │     &bspc_del      │
+//    ├───────────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
+//    │     mt lctl `     │    A    │ &hml lgui S │ &hml lalt D │ &hml lsft F │  G  │     H     │ &hmr rsft J │ &hmr lalt K │ &hmr rgui L │    '    │     mt lctl -      │
+//    ├───────────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
+//    │     &sk lsft      │    Z    │      X      │      C      │      V      │  B  │     N     │      M      │      ,      │      .      │    /    │    &colon_semi     │
+//    ├───────────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
+//    │    lgui(bspc)     │  capsw  │    ralt     │    sl 2     │    sl 3     │     │ slt 1 spc │ mt lgui ent │ slt 2 left  │ slt 3 down  │   up    │ mt lsft(lctl) rght │
+//    └───────────────────┴─────────┴─────────────┴─────────────┴─────────────┴─────┴───────────┴─────────────┴─────────────┴─────────────┴─────────┴────────────────────┘
+  &mt LS(LCTRL) TAB   &slt 1 Q     &kp W         &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &bspc_del
+  &mt LCTRL GRAVE     &kp A        &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
+  &sk LSHFT           &kp Z        &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &colon_semi
+  &kp LG(BSPC)        &caps_word   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &mt LS(LCTRL) RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -127,19 +159,19 @@
 
         raise {
             bindings = <
-//    ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬──────┐
-//    │ lsft(`) │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │  0  │ bspc │
-//    ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┤
-//    │   del   │ f1  │ f2  │ f3  │ f4  │ f5  │ f6  │ f7  │ f8  │ f9  │ f10 │ f11  │
-//    ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┤
-//    │         │     │     │     │     │     │     │     │     │     │     │ f12  │
-//    ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼──────┤
-//    │         │     │     │     │     │     │     │     │     │     │     │      │
-//    └─────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴──────┘
-  &kp LS(GRAVE)   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5   &kp N6   &kp N7   &kp N8   &kp N9   &kp N0    &kp BSPC
-  &kp DEL         &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &kp F6   &kp F7   &kp F8   &kp F9   &kp F10   &kp F11
-  &trans          &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans    &kp F12
-  &trans          &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans    &trans
+//    ┌───────────────┬─────────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┬──────────────┐
+//    │    lsft(`)    │      1      │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │   0    │     bspc     │
+//    ├───────────────┼─────────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼────────┼──────────────┤
+//    │      del      │     f1      │ f2  │ f3  │ f4  │ f5  │ f6  │ f7  │ f8  │ f9  │  f10   │     f11      │
+//    ├───────────────┼─────────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼────────┼──────────────┤
+//    │               │             │     │     │     │     │     │     │     │     │        │     f12      │
+//    ├───────────────┼─────────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼────────┼──────────────┤
+//    │ &DEBUG_PASTE2 │ &WORK_EMAIL │     │     │     │     │     │     │     │     │ &EMAIL │ &DEBUG_PASTE │
+//    └───────────────┴─────────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴────────┴──────────────┘
+  &kp LS(GRAVE)   &kp N1        &kp N2   &kp N3   &kp N4   &kp N5   &kp N6   &kp N7   &kp N8   &kp N9   &kp N0    &kp BSPC
+  &kp DEL         &kp F1        &kp F2   &kp F3   &kp F4   &kp F5   &kp F6   &kp F7   &kp F8   &kp F9   &kp F10   &kp F11
+  &trans          &trans        &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans    &kp F12
+  &DEBUG_PASTE2   &WORK_EMAIL   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &EMAIL    &DEBUG_PASTE
             >;
         };
         other {
