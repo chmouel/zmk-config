@@ -30,6 +30,10 @@ function echo_blue() {
   echo -e "\033[0;34m$1\033[0m"
 }
 
+function echo_yellow() {
+  echo -e "\033[0;33m$1\033[0m"
+}
+
 echo -n "$(echo_red ) Unplug the keyboard: "
 while true; do
   if dfu-util -l 2>/dev/null | grep -q "Found DFU"; then
@@ -39,7 +43,7 @@ while true; do
     break
   fi
 done
-echo " done"
+echo_yellow " done"
 
 echo -n "$(echo_green ) Plug the keyboard: "
 while true; do
@@ -50,4 +54,4 @@ while true; do
     sleep 1
   fi
 done
-echo " done"
+echo_yellow " done"
