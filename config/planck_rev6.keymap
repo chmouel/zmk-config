@@ -27,13 +27,12 @@
 //#define HYPR LS(LC(LA(LGUI)))
 #define QUICK_TAP_MS 175
 #define IDLE_MS 150
-#define TAPPING_TERM_MS 230
+#define TAPPING_TERM_MS 200
 
 / {
     behaviors {
         hml: homerow_mods_left {
                 compatible = "zmk,behavior-hold-tap";
-                label = "HOMEROW_MODS_LEFT";
                 flavor = "balanced";
                 tapping-term-ms = <TAPPING_TERM_MS>;
                 quick-tap-ms = <QUICK_TAP_MS>;
@@ -44,7 +43,6 @@
         };
         hmr: homerow_mods_right {
                 compatible = "zmk,behavior-hold-tap";
-                label = "HOMEROW_MODS_RIGHT";
                 flavor = "balanced";
                 tapping-term-ms = <TAPPING_TERM_MS>;
                 quick-tap-ms = <QUICK_TAP_MS>;
@@ -55,7 +53,6 @@
         };
         slt: spacebar_layer_tap { 
                 compatible = "zmk,behavior-hold-tap"; 
-                label = "SPACE_LAYER_TAP"; 
                 #binding-cells = <2>; 
                 flavor = "tap-preferred"; 
                 tapping-term-ms = <TAPPING_TERM_MS>; 
@@ -76,21 +73,20 @@
             bindings = <&kp COLON>, <&kp SEMI>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        #include "includes/fr.h"
     };
     combos {
         compatible = "zmk,combos";
 
         COMBO(esckey,      &kp ESC,         19 20)
-        COMBO(ctrlshfttab, &kp LC(LS(TAB)), 36 37)
-        COMBO(ctrltab,     &kp LC(TAB),     37 38)
-        COMBO(caps_word,   &caps_word,      0  13)
+        COMBO(caps_word,   &caps_word,      0  1)
     };
     macros {
         DEBUG_PASTE: DEBUG_PASTE {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <MYDEBUG_PASTE_MACRO>;
-            label = "DEBUG_PASTE";
         };
  
         DEBUG_PASTE2: DEBUG_PASTE2 {
@@ -98,21 +94,18 @@
             #binding-cells = <0>;
             bindings = 
               MYDEBUG_PASTE_MACRO_2
-            label = "DEBUG_PASTE2";
         };  
 
         EMAIL: EMAIL {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none &kp C &kp H &kp M &kp O &kp U &kp E &kp L &kp AT &kp C &kp H &kp M &kp O &kp U &kp E &kp L &kp DOT &kp C &kp O &kp M>;
-            label = "EMAIL";
         };
 
         WORK_EMAIL: WORK_EMAIL {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none &kp C &kp B &kp O &kp U &kp D &kp J &kp N &kp A &kp AT &kp R &kp E &kp D &kp H &kp A &kp T &kp DOT &kp C &kp O &kp M>;
-            label = "WORK_EMAIL";
         };
     };
     keymap {
@@ -120,19 +113,19 @@
 
         default_layer {
             bindings = <
-//    ┌───────────────────┬─────────┬─────────────┬─────────────┬─────────────┬─────┬───────────┬─────────────┬─────────────┬─────────────┬─────────┬────────────────────┐
-//    │ mt lsft(lctl) tab │ slt 1 Q │      W      │      E      │      R      │  T  │     Y     │      U      │      I      │      O      │ slt 1 P │     &bspc_del      │
-//    ├───────────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
-//    │     mt lctl `     │    A    │ &hml lgui S │ &hml lalt D │ &hml lsft F │  G  │     H     │ &hmr rsft J │ &hmr lalt K │ &hmr rgui L │    '    │     mt lctl -      │
-//    ├───────────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
-//    │     &sk lsft      │    Z    │      X      │      C      │      V      │  B  │     N     │      M      │      ,      │      .      │    /    │    &colon_semi     │
-//    ├───────────────────┼─────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
-//    │    lgui(bspc)     │  capsw  │    ralt     │    sl 2     │    sl 3     │     │ slt 1 spc │ mt lgui ent │ slt 2 left  │ slt 3 down  │   up    │ mt lsft(lctl) rght │
-//    └───────────────────┴─────────┴─────────────┴─────────────┴─────────────┴─────┴───────────┴─────────────┴─────────────┴─────────────┴─────────┴────────────────────┘
-  &mt LS(LCTRL) TAB   &slt 1 Q     &kp W         &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &bspc_del
-  &mt LCTRL GRAVE     &kp A        &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
-  &sk LSHFT           &kp Z        &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &colon_semi
-  &kp LG(BSPC)        &caps_word   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &mt LS(LCTRL) RIGHT
+//    ┌───────────────────┬───────────┬─────────────┬─────────────┬─────────────┬─────┬───────────┬─────────────┬─────────────┬─────────────┬─────────┬────────────────────┐
+//    │ mt lsft(lctl) tab │  slt 1 Q  │      W      │      E      │      R      │  T  │     Y     │      U      │      I      │      O      │ slt 1 P │     &bspc_del      │
+//    ├───────────────────┼───────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
+//    │     mt lctl `     │     A     │ &hml lgui S │ &hml lalt D │ &hml lsft F │  G  │     H     │ &hmr rsft J │ &hmr lalt K │ &hmr rgui L │    '    │     mt lctl -      │
+//    ├───────────────────┼───────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
+//    │     &sk lsft      │     Z     │      X      │      C      │      V      │  B  │     N     │      M      │      ,      │      .      │    /    │      slt 4 :       │
+//    ├───────────────────┼───────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
+//    │  lctl(lsft(tab))  │ lctl(tab) │    ralt     │    sl 2     │  lt 3 bspc  │     │ slt 1 spc │ mt lgui ent │ slt 2 left  │ slt 3 down  │   up    │ mt lsft(lctl) rght │
+//    └───────────────────┴───────────┴─────────────┴─────────────┴─────────────┴─────┴───────────┴─────────────┴─────────────┴─────────────┴─────────┴────────────────────┘
+  &mt LS(LCTRL) TAB   &slt 1 Q      &kp W         &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &kp O         &slt 1 P    &bspc_del
+  &mt LCTRL GRAVE     &kp A         &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
+  &sk LSHFT           &kp Z         &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &slt 4 COLON
+  &kp LC(LS(TAB))     &kp LC(TAB)   &kp RALT      &sl 2         &lt 3 bspc     &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &mt LS(LCTRL) RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -190,6 +183,24 @@
   &trans   &kp PG_UP      &kp PG_DN       &kp LC(PG_DN)      &kp LC(PG_UP)       &trans       &trans       &trans       &trans       &trans       &trans       &trans
             >;
         };
+
+        accents {
+            bindings = <
+//    ┌─────┬───────────────┬───────────────┬───────────────┬─────────────┬─────┬─────┬───────────────┬─────────┬───────────────┬───────────────┬─────┐
+//    │     │ &FR_E_CIRONFL │  &FR_E_AIGU   │    &FR_E_`    │ &FR_E_TREMA │     │     │ &FR_U_CIRONFL │ &FR_U_` │ &FR_I_CIRONFL │ &FR_O_CIRONFL │     │
+//    ├─────┼───────────────┼───────────────┼───────────────┼─────────────┼─────┼─────┼───────────────┼─────────┼───────────────┼───────────────┼─────┤
+//    │     │    &FR_A_`    │ &FR_A_CIRONFL │               │             │     │     │               │         │               │               │     │
+//    ├─────┼───────────────┼───────────────┼───────────────┼─────────────┼─────┼─────┼───────────────┼─────────┼───────────────┼───────────────┼─────┤
+//    │     │               │  &FR_3_EURO   │ &FR_C_CEDILLE │             │     │     │               │         │               │               │     │
+//    ├─────┼───────────────┼───────────────┼───────────────┼─────────────┼─────┼─────┼───────────────┼─────────┼───────────────┼───────────────┼─────┤
+//    │     │               │               │               │             │     │     │               │         │               │               │     │
+//    └─────┴───────────────┴───────────────┴───────────────┴─────────────┴─────┴─────┴───────────────┴─────────┴───────────────┴───────────────┴─────┘
+  &trans   &FR_E_CIRONFL   &FR_E_AIGU      &FR_E_GRAVE     &FR_E_TREMA   &trans   &trans   &FR_U_CIRONFL   &FR_U_GRAVE   &FR_I_CIRONFL   &FR_O_CIRONFL   &trans
+  &trans   &FR_A_GRAVE     &FR_A_CIRONFL   &trans          &trans        &trans   &trans   &trans          &trans        &trans          &trans          &trans
+  &trans   &trans          &FR_3_EURO      &FR_C_CEDILLE   &trans        &trans   &trans   &trans          &trans        &trans          &trans          &trans
+  &trans   &trans          &trans          &trans          &trans        &trans   &trans   &trans          &trans        &trans          &trans          &trans
+            >;
+      };
 
     };
 };
