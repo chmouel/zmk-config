@@ -16,14 +16,6 @@
 //    status = "okay";
 //};
 
-#define COMBO(NAME, BINDINGS, KEYPOS) \
-  combo_##NAME { \
-    timeout-ms = <50>; \
-    bindings = <BINDINGS>; \
-    key-positions = <KEYPOS>; \
-    layers = <0>; \
-  };
-
 //#define HYPR LS(LC(LA(LGUI)))
 #define QUICK_TAP_MS 175
 #define IDLE_MS 150
@@ -31,56 +23,12 @@
 
 / {
     behaviors {
-        hml: homerow_mods_left {
-                compatible = "zmk,behavior-hold-tap";
-                flavor = "balanced";
-                tapping-term-ms = <TAPPING_TERM_MS>;
-                quick-tap-ms = <QUICK_TAP_MS>;
-                require-prior-idle-ms = <IDLE_MS>;
-                bindings = <&kp>, <&kp>;
-                #binding-cells = <2>; 
-                hold-trigger-key-positions = <KEYS_R THUMBS>;
-        };
-        hmr: homerow_mods_right {
-                compatible = "zmk,behavior-hold-tap";
-                flavor = "balanced";
-                tapping-term-ms = <TAPPING_TERM_MS>;
-                quick-tap-ms = <QUICK_TAP_MS>;
-                require-prior-idle-ms = <IDLE_MS>;
-                bindings = <&kp>, <&kp>;
-                #binding-cells = <2>; 
-                hold-trigger-key-positions = <KEYS_L THUMBS>;
-        };
-        slt: spacebar_layer_tap { 
-                compatible = "zmk,behavior-hold-tap"; 
-                #binding-cells = <2>; 
-                flavor = "tap-preferred"; 
-                tapping-term-ms = <TAPPING_TERM_MS>; 
-                quick-tap-ms = <QUICK_TAP_MS>; 
-                global-quick-tap; 
-                bindings = <&mo>, <&kp>; 
-        }; 
-        bspc_del: backspace_delete {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp BACKSPACE>, <&kp DELETE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            keep-mods = <(MOD_RSFT)>;
-        };
-        colon_semi: invert_colon_semi {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp COLON>, <&kp SEMI>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
+        #include "includes/behaviors.h"
         #include "includes/fr.h"
     };
-    combos {
-        compatible = "zmk,combos";
 
-        COMBO(esckey,      &kp ESC,         19 20)
-        COMBO(caps_word,   &caps_word,      0  1)
+    combos {
+        #include "includes/combos.h"
     };
     macros {
         DEBUG_PASTE: DEBUG_PASTE {
@@ -114,7 +62,7 @@
         default_layer {
             bindings = <
 //    ┌───────────────────┬───────────┬─────────────┬─────────────┬─────────────┬─────┬───────────┬─────────────┬─────────────┬─────────────┬─────────┬────────────────────┐
-//    │ mt lsft(lctl) tab │  slt 1 Q  │      W      │      E      │      R      │  T  │     Y     │      U      │      I      │   slt 3 O   │ slt 1 P │     slt 2 bspc     │
+//    │ mt lsft(lctl) tab │  mol 1 Q  │   mol 3 W   │      E      │      R      │  T  │     Y     │      U      │      I      │   mor 3 O   │ mor 1 P │     slt 2 bspc     │
 //    ├───────────────────┼───────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
 //    │     mt lctl `     │     A     │ &hml lgui S │ &hml lalt D │ &hml lsft F │  G  │     H     │ &hmr rsft J │ &hmr lalt K │ &hmr rgui L │    '    │     mt lctl -      │
 //    ├───────────────────┼───────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
@@ -122,7 +70,7 @@
 //    ├───────────────────┼───────────┼─────────────┼─────────────┼─────────────┼─────┼───────────┼─────────────┼─────────────┼─────────────┼─────────┼────────────────────┤
 //    │  lctl(lsft(tab))  │ lctl(tab) │    ralt     │    sl 2     │    sl 3     │     │ slt 1 spc │ mt lgui ent │ slt 2 left  │ slt 3 down  │   up    │ mt lsft(lctl) rght │
 //    └───────────────────┴───────────┴─────────────┴─────────────┴─────────────┴─────┴───────────┴─────────────┴─────────────┴─────────────┴─────────┴────────────────────┘
-  &mt LS(LCTRL) TAB   &slt 1 Q      &kp W         &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &slt 3 O      &slt 1 P    &slt 2 BSPC
+  &mt LS(LCTRL) TAB   &mol 1 Q      &mol 3 W      &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &mor 3 O      &mor 1 P    &slt 2 BSPC
   &mt LCTRL GRAVE     &kp A         &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
   &sk LSHFT           &kp Z         &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &slt 4 COLON
   &kp LC(LS(TAB))     &kp LC(TAB)   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &mt LS(LCTRL) RIGHT
