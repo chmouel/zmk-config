@@ -17,6 +17,7 @@
          require-prior-idle-ms = <IDLE_MS>;
          bindings = <&kp>, <&kp>;
          #binding-cells = <2>; 
+         hold-trigger-key-positions = <KEYS_L THUMBS>;
  };
 
  mol: mo_left {
@@ -38,7 +39,9 @@
          require-prior-idle-ms = <IDLE_MS>;
          bindings = <&mo>, <&kp>;
          #binding-cells = <2>; 
+         hold-trigger-key-positions = <KEYS_L THUMBS>;
  };
+
  slt: spacebar_layer_tap { 
          compatible = "zmk,behavior-hold-tap"; 
          #binding-cells = <2>; 
