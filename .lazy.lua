@@ -5,7 +5,9 @@ return {
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>h",
-				'<cmd>TermExec dir=%:p:h:h cmd="./build.sh"<cr>',
+				"<cmd>TermExec dir="
+					.. vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
+					.. ' cmd="./build.sh"<cr>',
 				{ noremap = true, silent = true }
 			)
 			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
