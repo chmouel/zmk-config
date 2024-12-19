@@ -52,7 +52,7 @@
   &mt LS(LCTRL) TAB   &mol 1 Q      &mol 3 W      &kp E         &kp R          &kp T    &kp Y          &kp U            &kp I         &mor 3 O      &mor 1 P    &slt 2 BSPC
   &mt LCTRL GRAVE     &kp A         &hml LGUI S   &hml LALT D   &hml LSHFT F   &kp G    &kp H          &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT     &mt LCTRL MINUS
   &sk LSHFT           &kp Z         &kp X         &kp C         &kp V          &kp B    &kp N          &kp M            &kp COMMA     &kp DOT       &kp SLASH   &slt 4 COLON
-  &kp LC(LS(TAB))     &kp LC(TAB)   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mt LGUI ENTER   &slt 2 LEFT   &slt 3 DOWN   &kp UP      &mt LS(LCTRL) RIGHT
+  &kp LC(LS(TAB))     &kp LC(TAB)   &kp RALT      &sl 2         &sl 3          &trans   &slt 1 SPACE   &mor 3 ENTER     &mor 2 LEFT   &kp DOWN   &kp UP      &mt LS(LCTRL) RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
