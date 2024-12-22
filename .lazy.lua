@@ -10,12 +10,12 @@ return {
 					.. ' cmd="./build.sh"<cr>',
 				{ noremap = true, silent = true }
 			)
-			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-				pattern = "*.keymap",
-				callback = function()
-					require("qmk").format()
-				end,
-			})
+			-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+			-- 	pattern = "*.keymap",
+			-- 	callback = function()
+			-- 		require("qmk").format()
+			-- 	end,
+			-- })
 			---@type qmk.UserConfig
 			local conf = {
 				name = "planck",
