@@ -51,12 +51,12 @@
 //    ├───────────────────┼────────────┼─────────────┼─────────────┼──────────────┼─────┼──────────────┼─────────────┼─────────────┼─────────────┼─────────────────┼───────────────┤
 //    │     &sk lsft      │     Z      │      X      │      C      │      V       │  B  │      N       │      M      │      ,      │      .      │ mt lsft(lctl) / │ slt ACCENT :  │
 //    ├───────────────────┼────────────┼─────────────┼─────────────┼──────────────┼─────┼──────────────┼─────────────┼─────────────┼─────────────┼─────────────────┼───────────────┤
-//    │  lctl(lsft(tab))  │ lctl(tab)  │    ralt     │  &sk HYPR   │ mol NAV bspc │     │ slt NUMB spc │ mor NAV ent │    left     │    down     │       up        │     rght      │
+//    │  lctl(lctl(tab))  │ lctl(tab)  │    ralt     │  &sk HYPR   │ mol NAV bspc │     │ slt NUMB spc │ mor NAV ent │    left     │    down     │       up        │     rght      │
 //    └───────────────────┴────────────┴─────────────┴─────────────┴──────────────┴─────┴──────────────┴─────────────┴─────────────┴─────────────┴─────────────────┴───────────────┘
   &mt LS(LCTRL) TAB   &mol SYMB Q   &mol NAV W    &kp E         &kp R           &kp T    &kp Y             &kp U            &kp I         &mor NAV O    &mor SYMB P           &slt NUMB BSPC
   &mt LCTRL GRAVE     &kp A         &hml LGUI S   &hml LALT D   &hml LSHFT F    &kp G    &kp H             &hmr RSHFT J     &hmr LALT K   &hmr RGUI L   &kp SQT               &mt LCTRL MINUS
   &sk LSHFT           &kp Z         &kp X         &kp C         &kp V           &kp B    &kp N             &kp M            &kp COMMA     &kp DOT       &mt LS(LCTRL) SLASH   &slt ACCENT COLON
-  &kp LC(LS(TAB))     &kp LC(TAB)   &kp RALT      &sk HYPR      &mol NAV BSPC   &trans   &slt NUMB SPACE   &mor NAV ENTER   &kp LEFT      &kp DOWN      &kp UP                &kp RIGHT
+  &kp LC(LC(TAB))     &kp LC(TAB)   &kp RALT      &sk HYPR      &mol NAV BSPC   &trans   &slt NUMB SPACE   &mor NAV ENTER   &kp LEFT      &kp DOWN      &kp UP                &kp RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
