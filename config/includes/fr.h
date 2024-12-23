@@ -76,4 +76,11 @@ macros {
         #binding-cells = <0>;
         bindings = <&kp RIGHT_ALT &kp LS(C) &kp EQUAL>;
     };
+
+    FR_OE_LIGATURE: FR_OE_LIGATURE {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings = <&kp RIGHT_ALT &kp O &kp E>;
+    };
+
 };

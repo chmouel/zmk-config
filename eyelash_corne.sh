@@ -19,6 +19,7 @@ function flash() {
     -S studio-rpc-usb-uart -- \
     -DSHIELD=nice_view \
     -DCONFIG_ZMK_STUDIO=y \
+    -DCONFIG_ZMK_STUDIO_LOCKING=n \
     -DZMK_CONFIG=$cPWD/config \
     -DKEYMAP_FILE=$cPWD/config/eyelash_corne.keymap \
     -DZMK_EXTRA_MODULES=$eyeZMK
