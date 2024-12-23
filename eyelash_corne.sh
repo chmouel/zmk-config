@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 # Author: Chmouel Boudjnah <chmouel@chmouel.com>
 set -eufo pipefail
 
