@@ -8,7 +8,7 @@
 #define RM1 23
 #define RM2 24
 #define LT5 0
-#define LM4 13
+#define LM4 14
 #define RT5 12
 #define RM4 26
 
