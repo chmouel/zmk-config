@@ -37,10 +37,10 @@ function flash() {
 
 flash left usb-Adafruit_nRF_UF2_D9D14D5F56CF8D6F-0:0
 echo -n $(echo_red ) "Press the reset button on the left side: "
-while ! bluetoothctl devices | grep -q Eyelash; do
-  echo -n "$(echo_blue .)"
-  sleep 1
-done
+
+echo
+echo "$(echo_green ) Left side is completed.."
+sleep 2
 
 flash right usb-Adafruit_nRF_UF2_07E2C44920A78BC8-0:0
-echo -n $(echo_red ) "Press the reset button on the right side: "
+echo $(echo_green ) "Right side is completed.. enjoy 🥳"
