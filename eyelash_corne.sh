@@ -29,7 +29,7 @@ function flash() {
     echo -n "$(echo_blue .)"
     sleep 1
   done
-  echo_yellow " done"
+  echo " ✅"
   sudo umount /mnt 2>/dev/null >/dev/null || true
   sudo mount /dev/disk/by-id/${id} /mnt
   sudo cp -bv build-${side}/zephyr/zmk.uf2 /mnt/CURRENT.UF2
@@ -38,9 +38,6 @@ function flash() {
 }
 
 flash left usb-Adafruit_nRF_UF2_D9D14D5F56CF8D6F-0:0
-echo -n $(echo_red ) "Press the reset button on the left side: "
-
-echo
 echo "$(echo_green ) Left side is completed.."
 sleep 2
 
