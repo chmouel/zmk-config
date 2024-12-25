@@ -17,6 +17,9 @@
     #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                  // thumbs on 36+ keys
 #endif
 
+#define COMBO_CAPS_1 LT5
+#define COMBO_CAPS_2 LM4
+
 #define LT0  5  // left-top row
 #define LT1  4
 #define LT2  3

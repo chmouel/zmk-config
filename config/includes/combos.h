@@ -17,5 +17,5 @@ compatible = "zmk,combos";
   │ 36  37  38  39  40  41 │ 42  43  44  45  46  47 │ │ LH5 LH4 LH3 LH2 LH1 LH0 │ RH0 RH1 RH2 RH3 RH4 RH5 │
   ╰────────────────────────┴────────────────────────╯ ╰─────────────────────────┴─────────────────────────╯ */
 COMBO(esc_caps,  &kp ESC,      RM1 RM2)
-COMBO(caps_word, &caps_word,   LT5 LM4)
+COMBO(caps_word, &caps_word,   COMBO_CAPS_1 COMBO_CAPS_2)
 COMBO(goback,    &kp LG(BSPC), RM4 RT5)
