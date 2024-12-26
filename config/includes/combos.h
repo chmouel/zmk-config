@@ -19,3 +19,4 @@ compatible = "zmk,combos";
 COMBO(esc_caps,  &kp ESC,      RM1 RM2)
 COMBO(caps_word, &caps_word,   COMBO_CAPS_1 COMBO_CAPS_2)
 COMBO(goback,    &kp LG(BSPC), RM4 RT5)
+COMBO(enter,    &kp RET, RM1 RM2 RM3)

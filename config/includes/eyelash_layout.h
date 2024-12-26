@@ -5,8 +5,10 @@
                42  43  44                45 46 47
 */
 
+#define RM0 22
 #define RM1 23
 #define RM2 24
+#define RM3 25
 #define LT5 0
 #define LM4 14
 #define RT5 12

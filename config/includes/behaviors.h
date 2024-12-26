@@ -60,9 +60,23 @@
      keep-mods = <(MOD_RSFT)>;
  };
 
+lt_bspc: layer_tap_bspc_del {
+    compatible = "zmk,behavior-hold-tap";
+    #binding-cells = <2>;
+    bindings = <&mo>, <&bspc_del>;
+    tapping-term-ms = <200>;
+};
+
  colon_semi: invert_colon_semi {
      compatible = "zmk,behavior-mod-morph";
      #binding-cells = <0>;
      bindings = <&kp COLON>, <&kp SEMI>;
      mods = <(MOD_LSFT|MOD_RSFT)>;
+ };
+
+ lt_colon_semi: layer_tap_colon_semi {
+     compatible = "zmk,behavior-hold-tap";
+     #binding-cells = <2>;
+     bindings = <&mo>, <&colon_semi>;
+     tapping-term-ms = <200>;
  };
